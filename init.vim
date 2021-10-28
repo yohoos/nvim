@@ -76,6 +76,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vimlab/split-term.vim'
 " Fuzzy filesystem finder, Needs RipGrep and fzy installed
 Plug 'cloudhead/neovim-fuzzy'
+" Colorscheme
+Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 " NERDTree Configs
@@ -122,6 +124,7 @@ let g:airline_theme='molokai'
 " colorscheme nord
 hi Pmenu ctermbg=green ctermfg=black
 hi PmenuSel ctermbg=cyan ctermfg=black
+colorscheme codedark
 
 " coc-prettier config
 " Mainly for use with javascript files
