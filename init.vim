@@ -78,6 +78,8 @@ Plug 'vimlab/split-term.vim'
 Plug 'cloudhead/neovim-fuzzy'
 " Colorscheme
 Plug 'tomasiser/vim-code-dark'
+" Scala Imports and Docs
+Plug 'derekwyatt/vim-scala'
 call plug#end()
 
 " NERDTree Configs
@@ -92,11 +94,19 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Move KeyMappings
+nnoremap <S-j> :m .+1<CR>==
+nnoremap <S-k> :m .-2<CR>==
+"inoremap <S-j> <Esc>:m .+1<CR>==gi
+"inoremap <S-k> <Esc>:m .-2<CR>==gi
+vnoremap <S-j> :m '>+1<CR>gv=gv
+vnoremap <S-k> :m '<-2<CR>gv=gv
+
 " Completion KeyMappings
 inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " FuzzyFinder
 nnoremap <C-space> :FuzzyOpen<CR>
@@ -145,3 +155,4 @@ nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
 nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
+

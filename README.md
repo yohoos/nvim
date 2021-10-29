@@ -50,3 +50,7 @@ Use visual mode to highlight and make selections.
 
 <p> to paste after cursor
 <P> to paste at cursor
+
+### Move lines
+
+Use Shift-{j,k} to move lines up or down one
