@@ -25,6 +25,12 @@ Use the above with visual mode to comment blocks
 
 <space>tb to get the different build options (compile, package, clean)
 
+:CocCommand
+
+- compile-cascade
+- compile-clean
+- analyze-stacktrace
+
 ### Navigation
 
 <j> for up
