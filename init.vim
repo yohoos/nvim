@@ -93,17 +93,13 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Completion KeyMappings
-inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
-
-" Tab Complete
-" inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<Up>"
 
 " FuzzyFinder
-nnoremap <C-p> :FuzzyOpen<CR>
+nnoremap <C-space> :FuzzyOpen<CR>
 
 " Airline Settings
 let g:airline#extensions#tabline#enabled = 2
@@ -149,4 +145,3 @@ nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
 nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
-
