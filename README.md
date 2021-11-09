@@ -56,3 +56,10 @@ Use visual mode to highlight and make selections.
 ### Move lines
 
 Use Shift-{j,k} to move lines up or down one
+
+### NERDTree
+
+<C-{HJLK}> to change windows
+Enter or "o" to open a directory
+Shift-O to recursively open a directory
+"m" to open menu options where you can create a "child node" to create new files/directories
