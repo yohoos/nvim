@@ -18,3 +18,7 @@
 [0m2021.11.09 11:55:12 INFO  time: initialize in 1.18s[0m
 [0m2021.11.09 11:55:16 WARN  Build server is not auto-connectable.[0m
 [0m2021.11.09 11:55:16 WARN  no build tool detected in workspace '/Users/yuhuan/.config/nvim'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.11.09 12:51:27 INFO  Started: Metals version 0.10.9 in workspace '/Users/yuhuan/.config/nvim' for client coc.nvim 0.0.80.[0m
+[0m2021.11.09 12:51:28 INFO  time: initialize in 1.22s[0m
+[0m2021.11.09 12:51:31 WARN  Build server is not auto-connectable.[0m
+[0m2021.11.09 12:51:31 WARN  no build tool detected in workspace '/Users/yuhuan/.config/nvim'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m

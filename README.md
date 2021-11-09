@@ -30,6 +30,8 @@ Use the above with visual mode to comment blocks
 - compile-cascade
 - compile-clean
 - analyze-stacktrace
+- "Enter without args and search for optimize imports"
+  - Change config in `.scalafix.conf` to "groupedImports = Merge"
 
 ### Navigation
 

@@ -107,8 +107,8 @@ vnoremap <S-k> :m '<-2<CR>gv=gv
 " Completion KeyMappings
 inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " NerdCommenter Mapping
 " nnoremap <C-/> <Plug>NerdCommenterInvert
