@@ -108,6 +108,10 @@ inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
+" NerdCommenter Mapping
+" nnoremap <C-/> <Plug>NerdCommenterInvert
+" inoremap <C-/> <Plug>NerdCommenterToggle
+
 " FuzzyFinder
 nnoremap <C-space> :FuzzyOpen<CR>
 
@@ -123,8 +127,8 @@ let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
-let g:airline_powerline_fonts=1
 let g:airline_theme='molokai'
+let g:airline_powerline_fonts=1
 
 " Color Configs
 " colorscheme nord

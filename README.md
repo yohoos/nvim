@@ -40,6 +40,8 @@ Use the above with visual mode to comment blocks
 
 <cntrl> plus the above directions for moving between windows
 
+Shift-3 to find next occurence of word
+
 ### Cut, Copy, Paste
 
 Standard Copy/Cut/Paste is available when in insertion mode.
