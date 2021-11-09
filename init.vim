@@ -36,8 +36,8 @@ set hlsearch                    " Highlight found searches
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
 set autoindent
-set nosmartindent
-set nocindent
+set smartindent
+set cindent
 set tabstop=4 shiftwidth=4 expandtab
 " set gdefault            " Use 'g' flag by default with :s/foo/bar/.
 " set magic               " Use 'magic' patterns (extended regular expressions).
@@ -72,17 +72,27 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'sheerun/vim-polyglot'
 " Intellisense engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Auto-close braces and scopes
-Plug 'jiangmiao/auto-pairs'
 " Terminal Split Support
 Plug 'vimlab/split-term.vim'
 " Fuzzy filesystem finder, Needs RipGrep and fzy installed
 Plug 'cloudhead/neovim-fuzzy'
 " Colorscheme
 Plug 'tomasiser/vim-code-dark'
+" Auto-close braces and scopes
+" Plug 'jiangmiao/auto-pairs'
 " Scala Imports and Docs
 " Plug 'derekwyatt/vim-scala'
 call plug#end()
+
+let g:coc_global_extensions = [
+      \ 'coc-pyright',
+      \ 'coc-prettier',
+      \ 'coc-pairs',
+      \ 'coc-metals',
+      \ 'coc-yaml',
+      \ 'coc-json',
+      \ 'coc-docker'
+      \ ]
 
 " NERDTree Configs
 autocmd VimEnter * NERDTree
@@ -105,10 +115,10 @@ vnoremap <S-j> :m '>+1<CR>gv=gv
 vnoremap <S-k> :m '<-2<CR>gv=gv
 
 " Completion KeyMappings
-inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<ENTER>"
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " NerdCommenter Mapping
 " nnoremap <C-/> <Plug>NerdCommenterInvert
