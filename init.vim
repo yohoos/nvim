@@ -36,6 +36,8 @@ set hlsearch                    " Highlight found searches
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
 set autoindent
+set nosmartindent
+set nocindent
 set tabstop=4 shiftwidth=4 expandtab
 " set gdefault            " Use 'g' flag by default with :s/foo/bar/.
 " set magic               " Use 'magic' patterns (extended regular expressions).
@@ -79,7 +81,7 @@ Plug 'cloudhead/neovim-fuzzy'
 " Colorscheme
 Plug 'tomasiser/vim-code-dark'
 " Scala Imports and Docs
-Plug 'derekwyatt/vim-scala'
+" Plug 'derekwyatt/vim-scala'
 call plug#end()
 
 " NERDTree Configs

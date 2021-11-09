@@ -8,6 +8,7 @@
     "showInferredType": true,
     "showImplicitArguments": true,
     "enableIndentOnPaste": true,
-    "sbtScript": "/usr/local/bin/sbt"
+    "sbtScript": "/usr/local/bin/sbt",
+    "scalafmtConfigPath": ".scalafmt.conf"
   }
 }
