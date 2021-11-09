@@ -158,6 +158,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " Help Vim recognize *.sbt and *.sc as Scala files
 au BufRead,BufNewFile *.sbt,*.sc set filetype=scala
 
+" METALS Configs
 " Used to expand decorations in worksheets
 nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
 
@@ -172,3 +173,29 @@ nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
 
+" Use <c-space> to trigger completion.
+"if has('nvim')
+  "inoremap <silent><expr> <c-space> coc#refresh()
+"else
+  "inoremap <silent><expr> <c-@> coc#refresh()
+"endif
+
+nmap <silent> J <Plug>(coc-definition)
+nmap <silent> H <Plug>(coc-references)
+nmap <silent> L <Plug>(coc-implementation)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')

@@ -33,6 +33,11 @@ Use the above with visual mode to comment blocks
 - "Enter without args and search for optimize imports"
   - Change config in `.scalafix.conf` to "groupedImports = Merge"
 
+(Shift) K to preview docs
+(Shift) J to jump to definition
+(Shift) H to jump to references
+(Shift) L to jump to implementations
+
 ### Navigation
 
 <j> for up
