@@ -15,6 +15,16 @@ TAB to go down a selection and Shift-TAB to go up a selection. Use Enter to sele
 
 <cntrl-space> to open fuzzy file finder, analogous to Intellij's global search bar
 
+Once in the fzy finder:
+
+      <Esc>     close fzy pane
+      <Enter>   open selected file with default open command
+      <Ctrl-S>  open selected file in new horizontal split
+      <Ctrl-V>  open selected file in new vertical split
+      <Ctrl-T>  open selected file in new tab
+      <Ctrl-N>  next entry
+      <Ctrl-P>  previous entry
+
 ### Commenting
 
 Assuming <leader> is \
