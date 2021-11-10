@@ -78,3 +78,7 @@ Use Shift-{j,k} to move lines up or down one
 Enter or "o" to open a directory
 Shift-O to recursively open a directory
 "m" to open menu options where you can create a "child node" to create new files/directories
+
+### Startify / Sessions
+
+Read the Startify docs using ":h startify"
