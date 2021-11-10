@@ -123,8 +123,8 @@ inoremap <C-Enter> <Esc>O
 " Completion KeyMappings
 inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<ENTER>"
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " NerdCommenter Mapping
 " nnoremap <C-/> <Plug>NerdCommenterInvert
