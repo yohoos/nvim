@@ -78,6 +78,8 @@ Plug 'vimlab/split-term.vim'
 Plug 'cloudhead/neovim-fuzzy'
 " Colorscheme
 Plug 'tomasiser/vim-code-dark'
+" Start screen and session manager
+Plug 'mhinz/vim-startify'
 " Auto-close braces and scopes
 " Plug 'jiangmiao/auto-pairs'
 " Scala Imports and Docs
@@ -208,3 +210,4 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
