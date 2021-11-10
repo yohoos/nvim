@@ -96,6 +96,10 @@ let g:coc_global_extensions = [
       \ 'coc-docker'
       \ ]
 
+" Startify session configs
+let g:startify_session_persistence = 0
+let g:startify_session_autoload = 0
+
 " NERDTree Configs
 autocmd VimEnter *
             \   if !argc()

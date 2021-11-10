@@ -92,3 +92,8 @@ Shift-O to recursively open a directory
 ### Startify / Sessions
 
 Read the Startify docs using ":h startify"
+
+Make sure to start creating your session in the project root!
+Otherwise, restoring session will restore from different directory.
+
+Has poor compatibility with NERDTree so utilize fuzzy finder more instead.
