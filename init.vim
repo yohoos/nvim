@@ -114,6 +114,12 @@ nnoremap <S-k> :m .-2<CR>==
 vnoremap <S-j> :m '>+1<CR>gv=gv
 vnoremap <S-k> :m '<-2<CR>gv=gv
 
+" KeyMappings for adding newlines
+nnoremap <S-Enter> <Esc>o
+nnoremap <C-Enter> <Esc>O
+inoremap <S-Enter> <Esc>o
+inoremap <C-Enter> <Esc>O
+
 " Completion KeyMappings
 inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<ENTER>"
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
@@ -181,8 +187,11 @@ nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPacka
 "endif
 
 nmap <silent> J <Plug>(coc-definition)
+nmap <silent> JJ :vsp<CR><Plug>(coc-definition)
 nmap <silent> H <Plug>(coc-references)
+nmap <silent> HH :vsp<CR><Plug>(coc-references)
 nmap <silent> L <Plug>(coc-implementation)
+nmap <silent> LL :vsp<CR><Plug>(coc-implementation)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>

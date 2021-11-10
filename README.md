@@ -37,6 +37,11 @@ Use the above with visual mode to comment blocks
 (Shift) J to jump to definition
 (Shift) H to jump to references
 (Shift) L to jump to implementations
+(Shift) {JJ, HH, LL} to jump via new vertical split
+
+#### vim navigation
+
+CTRL-^ to edit / goto previous file
 
 ### Navigation
 
@@ -48,6 +53,9 @@ Use the above with visual mode to comment blocks
 <cntrl> plus the above directions for moving between windows
 
 Shift-3 to find next occurence of word
+
+Shift-Enter to enter newline in next line
+Cntrl-Enter to enter newline in above line
 
 ### Cut, Copy, Paste
 
