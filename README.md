@@ -62,6 +62,9 @@ CTRL-^ to edit / goto previous file
 
 <cntrl> plus the above directions for moving between windows
 
+<CTRL-{du,u}> to move up and down in blocks
+<CTRL-{i,o}> to move to next/prev line in cycle
+
 Shift-3 to find next occurence of word
 
 Shift-Enter to enter newline in next line
