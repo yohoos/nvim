@@ -97,8 +97,8 @@ let g:coc_global_extensions = [
       \ ]
 
 " Startify session configs
-let g:startify_session_persistence = 0
-let g:startify_session_autoload = 0
+let g:startify_session_persistence = 1
+let g:startify_session_autoload = 1
 
 " NERDTree Configs
 autocmd VimEnter *
@@ -203,6 +203,9 @@ nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPacka
 "else
   "inoremap <silent><expr> <c-@> coc#refresh()
 "endif
+
+" Symbol renaming.
+nmap <C-r> <Plug>(coc-rename)
 
 nmap <silent> J <Plug>(coc-definition)
 nmap <silent> JJ :vsp<CR><Plug>(coc-definition)

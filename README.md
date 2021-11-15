@@ -48,6 +48,7 @@ Use the above with visual mode to comment blocks
 (Shift) H to jump to references
 (Shift) L to jump to implementations
 (Shift) {JJ, HH, LL} to jump via new vertical split
+Cntrl-W = to resize all splits evenly
 
 #### vim navigation
 
