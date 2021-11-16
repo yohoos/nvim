@@ -206,6 +206,8 @@ nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPacka
 
 " Symbol renaming.
 nmap <C-r> <Plug>(coc-rename)
+" Redo mapping
+nnoremap U <C-r>
 
 nmap <silent> J <Plug>(coc-definition)
 nmap <silent> JJ :vsp<CR><Plug>(coc-definition)
