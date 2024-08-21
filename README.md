@@ -16,7 +16,7 @@ TAB to go down a selection and Shift-TAB to go up a selection. Use Enter to sele
 
 ### Fuzzy Finder
 
-"<leader>" defaults to '\\'
+"\<leader\>" defaults to '\\'
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -32,8 +32,10 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 ### Commenting
 
-Assuming <leader> is \
+Assuming "\<leader\>" is "\\"
+
 Use <leader>ci to comment/uncomment
+
 Use the above with visual mode to comment blocks
 
 ### sbt-metals
