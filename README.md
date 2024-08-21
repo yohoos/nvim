@@ -16,7 +16,7 @@ TAB to go down a selection and Shift-TAB to go up a selection. Use Enter to sele
 
 ### Fuzzy Finder
 
-<leader> defaults to '\\'
+"<leader>" defaults to '\\'
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
