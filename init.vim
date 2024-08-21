@@ -74,8 +74,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Terminal Split Support
 Plug 'vimlab/split-term.vim'
-" Fuzzy filesystem finder, Needs RipGrep and fzy installed
-Plug 'cloudhead/neovim-fuzzy'
+" New nvim fuzzy finder
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 " Colorscheme
 Plug 'tomasiser/vim-code-dark'
 " Start screen and session manager
