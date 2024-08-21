@@ -16,6 +16,8 @@ TAB to go down a selection and Shift-TAB to go up a selection. Use Enter to sele
 
 ### Fuzzy Finder
 
+Personal shortcut to use finder is: \<C-space\>
+
 "\<leader\>" defaults to '\\'
 
 " Find files using Telescope command-line sugar.
