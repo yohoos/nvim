@@ -93,7 +93,10 @@ Use visual mode to highlight and make selections.
 
 ### Move lines
 
-Use Shift-{j,k} to move lines up or down one
+dd - cuts line
+{j,k} to move cursor up or down
+P - paste above cursor
+p - paste below cursor
 
 ### NERDTree
 
