@@ -117,3 +117,9 @@ Make sure to start creating your session in the project root!
 Otherwise, restoring session will restore from different directory.
 
 Has poor compatibility with NERDTree so utilize fuzzy finder more instead.
+
+### Macros
+
+q{a-z} - registers the macro to a slot and begins recording. Press q again to finish recording.
+
+To use playback a macro, use @{a-z}. @@ also replays the most recent macro.
