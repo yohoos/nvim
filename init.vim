@@ -125,14 +125,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Move KeyMappings
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
-"inoremap <S-j> <Esc>:m .+1<CR>==gi
-"inoremap <S-k> <Esc>:m .-2<CR>==gi
-vnoremap <S-j> :m '>+1<CR>gv=gv
-vnoremap <S-k> :m '<-2<CR>gv=gv
-
 " KeyMappings for adding newlines
 nnoremap <S-Enter> <Esc>o
 nnoremap <C-Enter> <Esc>O
