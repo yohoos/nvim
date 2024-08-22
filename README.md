@@ -59,21 +59,25 @@ Use the above with visual mode to comment blocks
 (Shift) {JJ, HH, LL} to jump via new vertical split
 Cntrl-W = to resize all splits evenly
 
-#### vim navigation
+### Vim Navigation
 
 CTRL-^ to edit / goto previous file
 
 ### Navigation
 
-<j> for up
-<k> for down
-<h> for left
-<l> for right
+\<j\> for up
 
-<cntrl> plus the above directions for moving between windows
+\<k\> for down
 
-<CTRL-{du,u}> to move up and down in blocks
-<CTRL-{i,o}> to move to next/prev line in cycle
+\<h\> for left
+
+\<l\> for right
+
+\<cntrl\> plus the above directions for moving between windows
+
+<CTRL-{d,u}> to move up and down in blocks
+
+<CTRL-{i,o}> to move to next/prev file in history cycle
 
 Shift-3 to find next occurence of word
 
