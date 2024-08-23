@@ -66,8 +66,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 " Airline themes
 Plug 'vim-airline/vim-airline-themes'
-" Nord
-Plug 'arcticicestudio/nord-vim'
 " Better syntax-highlighting for filetypes in vim
 Plug 'sheerun/vim-polyglot'
 " Intellisense engine
@@ -78,7 +76,8 @@ Plug 'vimlab/split-term.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 " Colorscheme
-Plug 'tomasiser/vim-code-dark'
+Plug 'neanias/everforest-nvim', { 'branch': 'main' }
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 " Start screen and session manager
 Plug 'mhinz/vim-startify'
 " Auto-close braces and scopes
@@ -86,6 +85,10 @@ Plug 'mhinz/vim-startify'
 " Scala Imports and Docs
 " Plug 'derekwyatt/vim-scala'
 call plug#end()
+
+lua << EOF
+
+EOF
 
 let g:coc_global_extensions = [
       \ 'coc-pyright',
@@ -172,10 +175,10 @@ let g:airline_theme='molokai'
 let g:airline_powerline_fonts=1
 
 " Color Configs
-" colorscheme nord
 hi Pmenu ctermbg=green ctermfg=black
 hi PmenuSel ctermbg=cyan ctermfg=black
-colorscheme codedark
+" colorscheme everforest
+colorscheme catppuccin
 
 " coc-prettier config
 " Mainly for use with javascript files
@@ -236,4 +239,3 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
