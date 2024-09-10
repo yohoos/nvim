@@ -40,25 +40,6 @@ Use <leader>ci to comment/uncomment
 
 Use the above with visual mode to comment blocks
 
-### sbt-metals
-
-<space>tb to get the different build options (compile, package, clean)
-
-:CocCommand
-
-- compile-cascade
-- compile-clean
-- analyze-stacktrace
-- "Enter without args and search for optimize imports"
-  - Change config in `.scalafix.conf` to "groupedImports = Merge"
-
-(Shift) K to preview docs
-(Shift) J to jump to definition
-(Shift) H to jump to references
-(Shift) L to jump to implementations
-(Shift) {JJ, HH, LL} to jump via new vertical split
-Cntrl-W = to resize all splits evenly
-
 ### Vim Navigation
 
 CTRL-^ to edit / goto previous file
