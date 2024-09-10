@@ -85,6 +85,9 @@ Plug 'ray-x/guihua.lua'
 call plug#end()
 
 lua << EOF
+local lspconfig = require("lspconfig")
+lspconfig.gopls.setup({})
+
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
@@ -184,5 +187,5 @@ let g:airline_powerline_fonts=1
 " Color Configs
 hi Pmenu ctermbg=green ctermfg=black
 hi PmenuSel ctermbg=cyan ctermfg=black
-" colorscheme everforest
 colorscheme catppuccin
+
