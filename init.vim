@@ -68,37 +68,44 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Better syntax-highlighting for filetypes in vim
 Plug 'sheerun/vim-polyglot'
-" Intellisense engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Terminal Split Support
 Plug 'vimlab/split-term.vim'
 " New nvim fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+Plug 'nvim-telescope/telescope.nvim'
 " Colorscheme
 Plug 'neanias/everforest-nvim', { 'branch': 'main' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 " Start screen and session manager
 Plug 'mhinz/vim-startify'
-" Auto-close braces and scopes
-" Plug 'jiangmiao/auto-pairs'
-" Scala Imports and Docs
-" Plug 'derekwyatt/vim-scala'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'neovim/nvim-lspconfig'
+Plug 'ray-x/go.nvim'
+Plug 'ray-x/guihua.lua'
 call plug#end()
 
 lua << EOF
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimports()
+  end,
+  group = format_sync_grp,
+})
+
+require('go').setup()
+
+local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimports()
+  end,
+  group = format_sync_grp,
+})
 
 EOF
-
-let g:coc_global_extensions = [
-      \ 'coc-pyright',
-      \ 'coc-prettier',
-      \ 'coc-pairs',
-      \ 'coc-metals',
-      \ 'coc-yaml',
-      \ 'coc-json',
-      \ 'coc-docker'
-      \ ]
 
 " Startify session configs
 let g:startify_session_persistence = 1
@@ -179,63 +186,3 @@ hi Pmenu ctermbg=green ctermfg=black
 hi PmenuSel ctermbg=cyan ctermfg=black
 " colorscheme everforest
 colorscheme catppuccin
-
-" coc-prettier config
-" Mainly for use with javascript files
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" Scala IDE Configs
-autocmd FileType json syntax match Comment +\/\/.\+$+
-" coc.nvim configs
-" Help Vim recognize *.sbt and *.sc as Scala files
-au BufRead,BufNewFile *.sbt,*.sc set filetype=scala
-
-" METALS Configs
-" Used to expand decorations in worksheets
-nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
-
-" Toggle panel with Tree Views
-nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
-" Toggle Tree View 'metalsPackages'
-nnoremap <silent> <space>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
-" Toggle Tree View 'metalsCompile'
-nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
-" Toggle Tree View 'metalsBuild'
-nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
-" Reveal current current class (trait or object) in Tree View 'metalsPackages'
-nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
-
-" Use <c-space> to trigger completion.
-"if has('nvim')
-  "inoremap <silent><expr> <c-space> coc#refresh()
-"else
-  "inoremap <silent><expr> <c-@> coc#refresh()
-"endif
-
-" Symbol renaming.
-nmap <C-r> <Plug>(coc-rename)
-" Redo mapping
-nnoremap U <C-r>
-
-nmap <silent> J <Plug>(coc-definition)
-nmap <silent> JJ :vsp<CR><Plug>(coc-definition)
-nmap <silent> H <Plug>(coc-references)
-nmap <silent> HH :vsp<CR><Plug>(coc-references)
-nmap <silent> L <Plug>(coc-implementation)
-nmap <silent> LL :vsp<CR><Plug>(coc-implementation)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
