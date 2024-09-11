@@ -12,7 +12,11 @@ Use :VTerm for vertical split
 
 ### Completion Selections Keys
 
-TAB to go down a selection and Shift-TAB to go up a selection. Use Enter to selection completion suggestion and ESC to exit.
+TAB to go down a selection and Shift-TAB to go up a selection. Use Enter to selection completion suggestion and \<C-e\> to close completion menu or double click ESC.
+
+Use K to show definition for current selection.
+
+Use \<C-]\> to jump to definition.
 
 ### Fuzzy Finder
 
