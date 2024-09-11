@@ -115,6 +115,9 @@ let g:startify_session_persistence = 1
 let g:startify_session_autoload = 1
 
 " NERDTree Configs
+
+let NERDTreeShowHidden=1
+
 autocmd VimEnter *
             \   if !argc()
             \ |   Startify
