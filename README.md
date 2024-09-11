@@ -10,6 +10,8 @@ Configurations for my most recent NeoVim setup.
 Use :Term{line numbers resize => default is half screen}
 Use :VTerm for vertical split
 
+To exit terminal mode, use \<C-\>\<C-n\> or \<C-w\>N
+
 ### Completion Selections Keys
 
 TAB to go down a selection and Shift-TAB to go up a selection. Use Enter to selection completion suggestion and \<C-e\> to close completion menu or double click ESC.
@@ -22,20 +24,9 @@ Use \<C-]\> to jump to definition.
 
 Personal shortcut to use finder is: \<C-space\>
 
+Personal shortcut for live grep is: \<C-g\>
+
 "\<leader\>" defaults to '\\'
-
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-" Using Lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-
 ### Commenting
 
 Assuming "\<leader\>" is "\\"
