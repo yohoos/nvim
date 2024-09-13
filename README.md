@@ -45,7 +45,15 @@ VISUAL mode
 
 ### Vim Navigation
 
-CTRL-^ to edit / goto previous file
+CTRL-^ to edit / goto previous buffer page
+
+### Tabs
+
+:tab <command> to create new tabp
+:{count}tabp - previous tab
+:{count}tabn - next tab
+gt - next tab
+{num}gt - go to tab numbered {num}
 
 ### Navigation
 
@@ -92,6 +100,7 @@ p - paste below cursor
 Enter or "o" to open a directory
 Shift-O to recursively open a directory
 "m" to open menu options where you can create a "child node" to create new files/directories
+"t" to open file in new tab
 
 ### Startify / Sessions
 
@@ -107,3 +116,7 @@ Has poor compatibility with NERDTree so utilize fuzzy finder more instead.
 q{a-z} - registers the macro to a slot and begins recording. Press q again to finish recording.
 
 To use playback a macro, use @{a-z}. @@ also replays the most recent macro.
+
+### Gitsigns
+
+Use commands via :Gitsigns \<command\>

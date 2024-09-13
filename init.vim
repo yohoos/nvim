@@ -96,9 +96,14 @@ Plug 'ray-x/guihua.lua'
 " For luasnip users.
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+" Git signs
+Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 lua << EOF
+  -- configure gitsigns
+  require('gitsigns').setup()
+
   -- enable commenter plugin
   require('Comment').setup()
 
