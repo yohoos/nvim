@@ -20,6 +20,8 @@ Use K to show definition for current selection.
 
 Use \<C-]\> to jump to definition.
 
+Use \<C-e\> to exit completion popup.
+
 ### Fuzzy Finder
 
 Personal shortcut to use finder is: \<C-space\>
