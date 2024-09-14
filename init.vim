@@ -78,7 +78,7 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhinz/vim-startify'
 " LSP configs
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig' " https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md for configuring lsps
 " Autocomplete
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -147,6 +147,9 @@ lua << EOF
       additional_vim_regex_highlighting = false,
     },
   }
+
+  -- Enable json lsp
+  require'lspconfig'.jsonls.setup{}
 
   -- Enable pyright lsp
   require'lspconfig'.pyright.setup{}
@@ -358,3 +361,4 @@ hi Pmenu ctermbg=green ctermfg=black
 hi PmenuSel ctermbg=cyan ctermfg=black
 " colorscheme catppuccin
 colorscheme everforest
+
