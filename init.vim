@@ -51,10 +51,10 @@ let g:session_default_to_last = 1
 
 " Tell Vim which characters to show for expanded TABs,
 " trailing whitespace, and end-of-lines. VERY useful!
-"if &listchars ==# 'eol:$'
-   "set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-  "set listchars=tab:>\ ,extends:>,precedes:<,nbsp:+
-"endif
+" if &listchars ==# 'eol:$'
+"    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+"   set listchars=tab:>\ ,extends:>,precedes:<,nbsp:+
+" endif
 
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
@@ -66,8 +66,6 @@ Plug 'numToStr/Comment.nvim'
 Plug 'vim-airline/vim-airline'
 " Airline themes
 Plug 'vim-airline/vim-airline-themes'
-" Better syntax-highlighting for filetypes in vim
-Plug 'sheerun/vim-polyglot'
 " Terminal Split Support
 Plug 'vimlab/split-term.vim'
 " New nvim fuzzy finder
@@ -326,15 +324,13 @@ inoremap <C-Enter> <Esc>O
 " inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 " inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-" FuzzyFinder
-nnoremap <C-space> <cmd>Telescope find_files<cr>
-nnoremap <C-g> <cmd>Telescope live_grep<cr>
-
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+nnoremap <C-Space> <cmd>Telescope find_files<cr>
 
 " Using Lua functions
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -354,7 +350,7 @@ let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
-let g:airline_theme='molokai'
+let g:airline_theme='catppuccin'
 let g:airline_powerline_fonts=1
 
 " Color Configs
