@@ -43,11 +43,7 @@ VISUAL mode
 `gc` - Toggles the region using linewise comment
 `gb` - Toggles the region using blockwise comment
 
-### Vim Navigation
-
-CTRL-^ to edit / goto previous buffer page
-
-### Tabs
+### Tabs (Not used much)
 
 :tab <command> to create new tabp
 :{count}tabp - previous tab
@@ -65,7 +61,9 @@ gt - next tab
 
 \<l\> for right
 
-\<cntrl\> plus the above directions for moving between windows
+\<CTRL-\> plus the above directions for moving between windows
+
+\<CTRL-\> plus the above directions in INSERT mode allows navigation during insert mode
 
 <CTRL-{d,u}> to move up and down in blocks
 

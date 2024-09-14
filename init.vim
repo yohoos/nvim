@@ -166,8 +166,6 @@ lua << EOF
     group = format_sync_grp,
   })
 
-  require('go').setup()
-
   local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
@@ -176,6 +174,8 @@ lua << EOF
     end,
     group = format_sync_grp,
   })
+
+  require('go').setup()
 
   -- Set up nvim-cmp.
   local cmp = require'cmp'
@@ -309,6 +309,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
 " KeyMappings for adding newlines
 nnoremap <S-Enter> <Esc>o
 nnoremap <C-Enter> <Esc>O
@@ -316,10 +321,10 @@ inoremap <S-Enter> <Esc>o
 inoremap <C-Enter> <Esc>O
 
 " Completion KeyMappings
-inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<ENTER>"
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+" inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<ENTER>"
+" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+" inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " FuzzyFinder
 nnoremap <C-space> <cmd>Telescope find_files<cr>
