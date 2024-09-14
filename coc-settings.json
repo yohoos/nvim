@@ -1,0 +1,14 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["py", "yaml", "json", "css", "markdown", "scala"],
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "black",
+  "codeLens.enable": true,
+  "metals.statusBarEnabled": true,
+  "metals": {
+    "showInferredType": true,
+    "showImplicitArguments": true,
+    "enableIndentOnPaste": true,
+    "sbtScript": "/usr/local/bin/sbt",
+    "scalafmtConfigPath": ".scalafmt.conf"
+  }
+}

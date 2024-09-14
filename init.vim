@@ -96,6 +96,11 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 " Git signs
 Plug 'lewis6991/gitsigns.nvim'
+" Intellisense engine (Use for Java, Scala)
+" https://github.com/neoclide/coc.nvim/issues/3258#issuecomment-1236425856
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Keeping up to date with master
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 lua << EOF
@@ -278,6 +283,18 @@ lua << EOF
     capabilities = capabilities
   }
 EOF
+
+" Coc Configs
+let g:coc_global_extensions = [
+      \ 'coc-prettier',
+      \ 'coc-pairs',
+      \ 'coc-metals',
+      \ 'coc-yaml',
+      \ 'coc-json',
+      \ 'coc-docker',
+      \ 'coc-sql',
+      \ 'coc-java'
+      \ ]
 
 " Startify session configs
 let g:startify_session_persistence = 1
