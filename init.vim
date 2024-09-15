@@ -76,6 +76,8 @@ Plug 'sainnhe/everforest'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 " Start screen and session manager
 Plug 'mhinz/vim-startify'
+" Auto pairs for brackets and parenthesis
+Plug 'windwp/nvim-autopairs'
 " LSP configs
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig' " https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md for configuring lsps
@@ -88,7 +90,7 @@ Plug 'hrsh7th/nvim-cmp'
 " Golang LSP
 Plug 'ray-x/go.nvim'
 Plug 'ray-x/guihua.lua'
-" For vsnip users.
+" For vsnip users - disable if using luasnip.
 " Plug 'hrsh7th/cmp-vsnip'
 " Plug 'hrsh7th/vim-vsnip'
 " For luasnip users.
@@ -98,9 +100,9 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'lewis6991/gitsigns.nvim'
 " Intellisense engine (Use for Java, Scala)
 " https://github.com/neoclide/coc.nvim/issues/3258#issuecomment-1236425856
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Keeping up to date with master
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 lua << EOF
@@ -109,6 +111,9 @@ lua << EOF
 
   -- enable commenter plugin
   require('Comment').setup()
+
+  -- enables nvim-autopairs
+  require("nvim-autopairs").setup {}
 
   -- nvim-treesitter configs
   require'nvim-treesitter.configs'.setup {
@@ -153,7 +158,18 @@ lua << EOF
     },
   }
 
+  -- BELOW CONTAINS LSP AND AUTOCOMPLETE CONFIGURATIONS ----------------
+  ----------------------------------------------------------------------
+
+  -- Enable Metals scala lsp - requires installation of scala + coursier
+  -- require'lspconfig'.metals.setup{}
+
+  -- Enable docker lsp
+  -- Needs `npm install -g dockerfile-language-server-nodejs`
+  require'lspconfig'.dockerls.setup{}
+
   -- Enable json lsp
+  -- Needs `npm i -g vscode-langservers-extracted`
   require'lspconfig'.jsonls.setup{}
 
   -- Enable pyright lsp
@@ -208,8 +224,9 @@ lua << EOF
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      -- Use Tab to scroll through completion items.
-	  ["<Tab>"] = cmp.mapping(function(fallback)
+      ['<TAB>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      -- Use C-j/k to scroll through completion items.
+	  ["<C-j>"] = cmp.mapping(function(fallback)
 		  if cmp.visible() then
 		  	cmp.select_next_item()
 		  elseif luasnip.expand_or_jumpable() then
@@ -219,7 +236,7 @@ lua << EOF
 		  end
 	  end, {"i", "s"}),
 
-	  ["<S-Tab>"] = cmp.mapping(function(fallback)
+	  ["<C-k>"] = cmp.mapping(function(fallback)
 	  	if cmp.visible() then
 	  		cmp.select_prev_item()
 	  	elseif luasnip.jumpable(-1) then
@@ -270,7 +287,7 @@ lua << EOF
     matching = { disallow_symbol_nonprefix_matching = false }
   })
 
-  -- Set up lspconfig.
+  -- Set up lspconfig autocomplete.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
@@ -282,19 +299,13 @@ lua << EOF
   require('lspconfig')['pyright'].setup {
     capabilities = capabilities
   }
+  require('lspconfig')['jsonls'].setup {
+      capabilities = capabilities
+  }
+  require('lspconfig')['dockerls'].setup {
+      capabilities = capabilities
+  }
 EOF
-
-" Coc Configs
-let g:coc_global_extensions = [
-      \ 'coc-prettier',
-      \ 'coc-pairs',
-      \ 'coc-metals',
-      \ 'coc-yaml',
-      \ 'coc-json',
-      \ 'coc-docker',
-      \ 'coc-sql',
-      \ 'coc-java'
-      \ ]
 
 " Startify session configs
 let g:startify_session_persistence = 1
@@ -321,6 +332,13 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == ''
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+" Completion KeyMappings - interferes with other commands need to fix for Coc
+" inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<ENTER>"
+" inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<ENTER>"
+" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<C-j>"
+" inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-k>"
+
 " KeyMappings for navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -337,12 +355,6 @@ nnoremap <S-Enter> <Esc>o
 nnoremap <C-Enter> <Esc>O
 inoremap <S-Enter> <Esc>o
 inoremap <C-Enter> <Esc>O
-
-" Completion KeyMappings
-" inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<ENTER>"
-" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-" inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-" inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
