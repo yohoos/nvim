@@ -25,7 +25,7 @@ set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
 set noswapfile                  " Don't use swapfile
 set nobackup            	" Don't create annoying backup files
-set encoding=utf-8              " Set default encoding to UTF-8
+set encoding=UTF-8              " Set default encoding to UTF-8
 set autowrite                   " Automatically save before :next, :make etc.
 set autoread                    " Automatically reread changed files without asking me anything
 set laststatus=2
@@ -78,6 +78,8 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhinz/vim-startify'
 " Auto pairs for brackets and parenthesis
 Plug 'windwp/nvim-autopairs'
+" Markdown previewer
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 " LSP configs
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig' " https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md for configuring lsps

@@ -118,3 +118,8 @@ To use playback a macro, use @{a-z}. @@ also replays the most recent macro.
 ### Gitsigns
 
 Use commands via :Gitsigns \<command\>
+
+### Markdown
+
+Use ":MarkdownPreview" to toggle markdown preview in browser.
+
