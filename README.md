@@ -14,7 +14,7 @@ To exit terminal mode, use \<C-\>\<C-n\> or \<C-w\>N
 
 ### Completion Selections Keys
 
-TAB to go down a selection and Shift-TAB to go up a selection. Use Enter to selection completion suggestion and \<C-e\> to close completion menu or double click ESC.
+C-j to go down a selection and C-k to go up a selection. Use TAB to selection completion suggestion and C-e to close completion menu or double click ESC.
 
 Use K to show definition for current selection.
 
