@@ -178,8 +178,29 @@ lua << EOF
   -- Needs `npm i -g vscode-langservers-extracted`
   require'lspconfig'.jsonls.setup{}
 
-  -- Enable pyright lsp
-  require'lspconfig'.pyright.setup{}
+  -- Enable python lsp
+  -- require'lspconfig'.pyright.setup{}
+  -- Needs to install multiple pip packages to use pylsp
+  require'lspconfig'.pylsp.setup{
+    settings = {
+      pylsp = {
+        plugins = {
+          black = {
+            enabled = true,
+          },
+          pylsp_mypy = {
+            live_mode = true
+          },
+          isort = {
+            enabled = true,
+          },
+          rope_autoimport = {
+            enabled = true
+          }
+        }
+      }
+    }
+  }
 
   -- Enable gopls LSP
   local lspconfig = require("lspconfig")
@@ -321,7 +342,7 @@ lua << EOF
   require('lspconfig')['gopls'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['pyright'].setup {
+  require('lspconfig')['pylsp'].setup {
     capabilities = capabilities
   }
   require('lspconfig')['jsonls'].setup {
