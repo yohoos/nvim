@@ -179,28 +179,28 @@ lua << EOF
   require'lspconfig'.jsonls.setup{}
 
   -- Enable python lsp
-  -- require'lspconfig'.pyright.setup{}
+  require'lspconfig'.pyright.setup{}
   -- Needs to install multiple pip packages to use pylsp
-  require'lspconfig'.pylsp.setup{
-    settings = {
-      pylsp = {
-        plugins = {
-          black = {
-            enabled = true,
-          },
-          pylsp_mypy = {
-            live_mode = true
-          },
-          isort = {
-            enabled = true,
-          },
-          rope_autoimport = {
-            enabled = true
-          }
-        }
-      }
-    }
-  }
+  -- require'lspconfig'.pylsp.setup{
+  --   settings = {
+  --     pylsp = {
+  --       plugins = {
+  --         black = {
+  --           enabled = true,
+  --         },
+  --         pylsp_mypy = {
+  --           live_mode = true
+  --         },
+  --         isort = {
+  --           enabled = true,
+  --         },
+  --         rope_autoimport = {
+  --           enabled = true
+  --         }
+  --       }
+  --     }
+  --   }
+  -- }
 
   -- Enable gopls LSP
   local lspconfig = require("lspconfig")
@@ -230,6 +230,13 @@ lua << EOF
       end
       vim.lsp.buf.format({async = false})
     end
+  })
+
+  -- Format on save using Black for python files
+  vim.api.nvim_create_autocmd("bufWritePost", {
+	group = vim.api.nvim_create_augroup("Black", { clear = true }),
+	pattern = "*.py",
+	command = "silent !black %",
   })
 
   -- Google: Modern Format On Save. Language agnostic. Leverages built in LSP
@@ -342,7 +349,7 @@ lua << EOF
   require('lspconfig')['gopls'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['pylsp'].setup {
+  require('lspconfig')['pyright'].setup {
     capabilities = capabilities
   }
   require('lspconfig')['jsonls'].setup {
