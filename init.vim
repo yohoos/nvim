@@ -89,12 +89,11 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+" Generate Docs
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 " Golang LSP
 Plug 'ray-x/go.nvim'
 Plug 'ray-x/guihua.lua'
-" For vsnip users - disable if using luasnip.
-" Plug 'hrsh7th/cmp-vsnip'
-" Plug 'hrsh7th/vim-vsnip'
 " For luasnip users.
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
@@ -108,6 +107,7 @@ Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 lua << EOF
+
   -- configure gitsigns
   require('gitsigns').setup()
 
@@ -357,6 +357,7 @@ lua << EOF
   require('lspconfig')['dockerls'].setup {
       capabilities = capabilities
   }
+
 EOF
 
 " Startify session configs
@@ -391,6 +392,9 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<C-j>"
 " inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-k>"
 
+" LSP shortcuts
+nnoremap <C-r> <cmd>lua vim.lsp.buf.rename()<cr>
+
 " KeyMappings for navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -416,7 +420,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 nnoremap <C-Space> <cmd>Telescope find_files<cr>
 
-" Using Lua functions
+" Using Telescope shortcuts via lua functions 
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>

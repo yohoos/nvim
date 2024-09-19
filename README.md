@@ -123,3 +123,10 @@ Use commands via :Gitsigns \<command\>
 
 Use ":MarkdownPreview" to toggle markdown preview in browser.
 
+### LSP Command Shortcuts
+
+K to show hover definition
+
+Cntrl-] to jump to definition
+
+Cntrl-r to rename
