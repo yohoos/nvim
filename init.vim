@@ -393,7 +393,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " LSP shortcuts
-nnoremap <C-r> <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <C-R> <cmd>lua vim.lsp.buf.rename()<cr>
 
 " KeyMappings for navigation
 nnoremap <C-J> <C-W><C-J>
