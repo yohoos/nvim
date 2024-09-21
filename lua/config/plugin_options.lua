@@ -1,0 +1,265 @@
+-- Telescope configs
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+vim.keymap.set('n', '<C-Space>', builtin.find_files, { desc = 'Telescope find files' })
+
+-- autopairs configs for use with nvim cmp
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
+-- Treesitter configs
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
+  ensure_installed = "all",
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  -- List of parsers to ignore installing (or "all")
+  ignore_install = {},
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  highlight = {
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = {},
+    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    disable = function(lang, buf)
+        local max_filesize = 100 * 1024 -- 100 KB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+            return true
+        end
+    end,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = true,
+  },
+
+  indent = {
+      enable = true
+  }
+}
+
+  -- BELOW CONTAINS LSP AND AUTOCOMPLETE CONFIGURATIONS ----------------
+  ----------------------------------------------------------------------
+
+  -- Enable Metals scala lsp - requires installation of scala + coursier
+  -- require'lspconfig'.metals.setup{}
+
+  -- Enable docker lsp
+  -- Needs `npm install -g dockerfile-language-server-nodejs`
+  require'lspconfig'.dockerls.setup{}
+
+  -- Enable json lsp
+  -- Needs `npm i -g vscode-langservers-extracted`
+  require'lspconfig'.jsonls.setup{}
+
+  -- Enable python lsp
+  require'lspconfig'.pyright.setup{}
+  -- Needs to install multiple pip packages to use pylsp
+  -- require'lspconfig'.pylsp.setup{
+  --   settings = {
+  --     pylsp = {
+  --       plugins = {
+  --         black = {
+  --           enabled = true,
+  --         },
+  --         pylsp_mypy = {
+  --           live_mode = true
+  --         },
+  --         isort = {
+  --           enabled = true,
+  --         },
+  --         rope_autoimport = {
+  --           enabled = true
+  --         }
+  --       }
+  --     }
+  --   }
+  -- }
+
+  -- Enable gopls LSP
+  require'lspconfig'.gopls.setup{}
+
+  -- runs goimports
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.go",
+    callback = function()
+      local params = vim.lsp.util.make_range_params()
+      params.context = {only = {"source.organizeImports"}}
+      -- buf_request_sync defaults to a 1000ms timeout. Depending on your
+      -- machine and codebase, you may want longer. Add an additional
+      -- argument after params if you find that you have to write the file
+      -- twice for changes to be saved.
+      -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+      local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+      for cid, res in pairs(result or {}) do
+        for _, r in pairs(res.result or {}) do
+          if r.edit then
+            local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+            vim.lsp.util.apply_workspace_edit(r.edit, enc)
+          end
+        end
+      end
+      vim.lsp.buf.format({async = false})
+    end
+  })
+
+  -- Format on save using Black for python files
+  vim.api.nvim_create_autocmd("bufWritePost", {
+	group = vim.api.nvim_create_augroup("Black", { clear = true }),
+	pattern = "*.py",
+	command = "silent !black %",
+  })
+
+  -- Google: Modern Format On Save. Language agnostic. Leverages built in LSP
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+    callback = function(args)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = args.buf,
+        callback = function()
+          vim.lsp.buf.format {async = false, id = args.data.client_id }
+        end,
+      })
+    end
+  })
+
+  -- set rename refactor to shortcut
+  -- vim.keymap.set('n', '<C-R>', vim.lsp.buf.rename(), { noremap = true, silent = false })
+
+  -- Set up nvim-cmp.
+  local cmp = require'cmp'
+  local luasnip = require'luasnip'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+      end,
+    },
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      -- Use C-j/k to scroll through completion items.
+	  ["<TAB>"] = cmp.mapping(function(fallback)
+		  if cmp.visible() then
+		  	cmp.select_next_item()
+		  elseif luasnip.expand_or_jumpable() then
+		  	luasnip.expand_or_jump()
+		  else
+		  	fallback()
+		  end
+	  end, {"i", "s"}),
+
+	  ["<S-TAB>"] = cmp.mapping(function(fallback)
+	  	if cmp.visible() then
+	  		cmp.select_prev_item()
+	  	elseif luasnip.jumpable(-1) then
+	  		luasnip.jump(-1)
+	  	else
+	  		fallback()
+	  	end
+	  end, {"i", "s"}),
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
+  -- Set configuration for specific filetype.
+  --[[ cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'git' },
+    }, {
+      { name = 'buffer' },
+    })
+ })
+ require("cmp_git").setup() ]]-- 
+
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false }
+  })
+
+  -- Set up lspconfig autocomplete.
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+  -- capabilities = capabilities
+  -- }
+  require('lspconfig')['gopls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['pyright'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['jsonls'].setup {
+      capabilities = capabilities
+  }
+  require('lspconfig')['dockerls'].setup {
+      capabilities = capabilities
+  }
+
+-- Startify configs
+vim.g.session_autosave = 'yes'
+vim.g.session_autoload = 'yes'
+vim.g.session_default_to_last = 1
+vim.g.startify_session_persistence = 1
+vim.g.startify_session_autoload = 1
