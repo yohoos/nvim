@@ -263,3 +263,15 @@ vim.g.session_autoload = 'yes'
 vim.g.session_default_to_last = 1
 vim.g.startify_session_persistence = 1
 vim.g.startify_session_autoload = 1
+
+-- NERDTree configs
+vim.g.NERDTreeShowHidden = 1
+-- Start NERDTree if nvim started with no args, call startify, then NERDTree, then move cursor to window
+vim.cmd[[ autocmd VimEnter * if !argc() | Startify | NERDTree | wincmd w | endif ]]
+-- Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
+vim.cmd[[ autocmd StdinReadPre * let s:std_in=1 ]]
+vim.cmd[[ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | wincmd p | endif ]]
+-- Exit Vim if NERDTree is the only window remaining in the only tab.
+vim.cmd[[ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif ]]
+
+

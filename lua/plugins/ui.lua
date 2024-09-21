@@ -14,5 +14,12 @@ return {
             vim.cmd([[colorscheme catppuccin]])
         end,
     },
+    {
+        'preservim/nerdtree',
+        dependencies = {
+            'ryanoasis/vim-devicons',
+            'Xuyuanp/nerdtree-git-plugin',
+            'tiagofumo/vim-nerdtree-syntax-highlight'
+        }
+    }
 }
-
