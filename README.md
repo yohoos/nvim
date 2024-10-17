@@ -129,4 +129,4 @@ K to show hover definition
 
 Cntrl-] to jump to definition
 
-Cntrl-R to rename
+rf to rename

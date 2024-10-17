@@ -136,20 +136,24 @@ require'nvim-treesitter.configs'.setup {
   })
 
   -- Google: Modern Format On Save. Language agnostic. Leverages built in LSP
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("lsp", { clear = true }),
-    callback = function(args)
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.buf.format {async = false, id = args.data.client_id }
-        end,
-      })
-    end
-  })
+  -- vim.api.nvim_create_autocmd("LspAttach", {
+  --   group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+  --   callback = function(args)
+  --     vim.api.nvim_create_autocmd("BufWritePre", {
+  --       buffer = args.buf,
+  --       callback = function()
+  --         vim.lsp.buf.format {
+  --           async = false,
+  --           id = args.data.client_id,
+  --           filter = function(client) return client.name ~= "jsonls" end
+  --         }
+  --       end,
+  --     })
+  --   end
+  -- })
 
   -- set rename refactor to shortcut
-  -- vim.keymap.set('n', '<C-R>', vim.lsp.buf.rename(), { noremap = true, silent = false })
+  vim.api.nvim_set_keymap('n', "rf", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = false })
 
   -- Set up nvim-cmp.
   local cmp = require'cmp'

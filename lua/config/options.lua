@@ -36,3 +36,4 @@ vim.api.nvim_set_keymap('i', "<C-Enter>", "<Esc>O", { noremap = true, silent = f
 vim.cmd[[ hi Pmenu ctermbg=green ctermfg=black ]]
 vim.cmd[[ hi PmenuSel ctermbg=cyan ctermfg=black ]]
 vim.cmd[[ colorscheme catppuccin-frappe ]]
+
