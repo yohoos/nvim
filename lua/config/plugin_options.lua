@@ -180,7 +180,7 @@ require'nvim-treesitter.configs'.setup {
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      -- Use C-j/k to scroll through completion items.
+      -- Use TAB/S-TAB to scroll through completion items.
 	  ["<TAB>"] = cmp.mapping(function(fallback)
 		  if cmp.visible() then
 		  	cmp.select_next_item()
