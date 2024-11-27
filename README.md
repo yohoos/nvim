@@ -95,6 +95,7 @@ p - paste below cursor
 ### NERDTree
 
 <C-{HJLK}> to change windows
+<C-ww> to go to next window
 Enter or "o" to open a directory
 Shift-O to recursively open a directory
 "m" to open menu options where you can create a "child node" to create new files/directories
