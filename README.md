@@ -63,6 +63,12 @@ gt - next tab
 
 \<CTRL-\> plus the above directions for moving between windows
 
+\<CTRL-W\>w cycles through windows
+
+\<CTRL-W\>t jumps to top left window
+
+\<CTRL-W\>b jumps to bottom right window
+
 \<CTRL-\> plus the above directions in INSERT mode allows navigation during insert mode
 
 <CTRL-{d,u}> to move up and down in blocks
