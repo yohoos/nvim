@@ -77,7 +77,9 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         config = function()
-            require("go").setup({ luasnip = true })
+            require("go").setup({
+                luasnip = true,
+            })
         end,
         event = {"CmdlineEnter"},
         ft = {"go", 'gomod'},
