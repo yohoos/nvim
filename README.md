@@ -5,12 +5,12 @@ Clone this repository and copy over the files to the ~/.config/nvim. Create the 
 
 Configurations for my most recent NeoVim setup.
 
-### For splitting termianls upon open
+### For splitting terminals upon open
 
 Use :Term{line numbers resize => default is half screen}
 Use :VTerm for vertical split
 
-To exit terminal mode, use \<C-\>\<C-n\> or \<C-w\>N
+To exit terminal mode, use \<C-\\>\<C-n\> or \<C-w\>N
 
 ### Completion Selections Keys
 
@@ -24,11 +24,13 @@ Use \<C-e\> to exit completion popup.
 
 ### Fuzzy Finder
 
-Personal shortcut to use finder is: \<C-space\>
+Personal shortcut to use file finder is: \<C-space\>
 
-Personal shortcut for live grep is: \<C-g\>
+Live grep: \<leader\>fg
 
 "\<leader\>" defaults to '\\'
+
+Current setup uses: \<Space\>
 ### Commenting
 
 NORMAL mode
